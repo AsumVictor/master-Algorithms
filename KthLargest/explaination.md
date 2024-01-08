@@ -62,3 +62,5 @@ slice from K, k+1
 Time complexity 
 :
 logn
+
+pop
