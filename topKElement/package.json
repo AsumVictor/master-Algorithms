@@ -1,0 +1,13 @@
+{
+  "name": "topkelement",
+  "version": "1.0.0",
+  "description": "",
+  "main": "challege.js",
+  "scripts": {
+    "test": "jest",
+    "try" : "node challenge.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
