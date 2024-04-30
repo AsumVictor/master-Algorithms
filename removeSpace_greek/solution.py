@@ -1,5 +1,4 @@
-from array import array
-def removeSpace(s: str):
+def solution(s: str):
     res = ''
     puntuation = {',', '.', '?'}
     
@@ -7,33 +6,24 @@ def removeSpace(s: str):
     r = 0
     
     while l <= len(s) - 1:
-        
+        word = ''
         while s[l] != " ":
-          if s[r] not in puntuation:
-            res += s[r]
+          word += s[r]
           r += 1
           l +=1
+          
+        if word != '':
+            if word in puntuation: 
+              res += word
+            else:
+                if res == "":
+                  res += word
+                else: 
+                    res += ' '
+                    res += word
 
-        if res != "" and res[-1] !=' ':
-          res += ' '
-            
+
         l += 1
         r = l
-        
-        # while s[l] == " " and l < len(s) -1:
-        #     l += 1
-        #     r = l
-        
-        
-        # print(s[l])
-        # res += s[r]
-        # l +=  1
-        # r += 1
 
-    print(res)
-          
-        
-    
-
-
-print(removeSpace('   Hello Geeks . Welcome   to  GeeksforGeeks   .    '))
+    return(res)
