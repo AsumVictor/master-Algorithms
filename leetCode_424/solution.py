@@ -7,17 +7,12 @@ def solution(s: str, k:int):
 
    while l < len(s):
        
-    print(l)
-    while ((r - l + 1) - maximum_value ) <= k and r <= len(s) - 1:
-        print(map, maximum_value)
+    while ((r - l + 1) - maximum_value )<= k and r <= len(s) - 1:
         map[s[r]] = map.get(s[r], 0) + 1
         maximum_value = max(maximum_value, map.get(s[r]))
-        print(map, maximum_value,  r - l + 1)
-        print(s[l:r+1])
+        max_len = max(max_len, (r - l + 1))
         r += 1
-        print(s[r])
-        print((r - l + 1), maximum_value, k, ((r - l + 1) - maximum_value ) <= k)
-        print('-------------')
+
     map[s[l]] = map.get(s[l], 0) - 1
     l += 1
       
