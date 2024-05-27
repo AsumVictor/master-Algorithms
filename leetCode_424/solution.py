@@ -21,7 +21,5 @@ def solution(s: str, k:int):
 
 
 print(solution('ABABAAB',2))
-print('-------------------')
 print(solution('AABABBA',1))
-print('-------------------')
 print(solution('ABCBBXBBABCCABABAAB',2))
