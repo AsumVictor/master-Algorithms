@@ -1,13 +1,15 @@
-async function get(sheetName){
-   try {
-     res = await fetch(`https://script.google.com/macros/s/AKfycbzjGuU3odON70nwq4KvYMHcU66GluccPDscjbKk17DzkAEYwS03WxXYPSm1y49LKEz5/exec?path=${sheetName}&action=read`)
+async function get(sheetName) {
+  try {
+    let res = await fetch(
+      `https://script.google.com/macros/s/AKfycbzjGuU3odON70nwq4KvYMHcU66GluccPDscjbKk17DzkAEYwS03WxXYPSm1y49LKEz5/exec?path=${sheetName}&action=read`
+    );
 
-     res = await res.json()
+    const { data } = await res.json();
 
-     console.log(res)
-   } catch (error) {
-    console.log(error)
-   }
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-get('Impact_story')
+get("Impact_story");

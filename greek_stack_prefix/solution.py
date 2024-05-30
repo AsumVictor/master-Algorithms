@@ -13,6 +13,7 @@ class Stack:
           stackNode = StackNode(data)
           if self.root == None:
             self.root = stackNode
+            self.size += 1
             return None
         
           stackNode.next = self.root
@@ -24,41 +25,48 @@ class Stack:
           if self.isEmpty():
               return None
           
+          
           topNode = self.root.data
           self.root = self.root.next
-          print(self.root.data)
           self.size -= 1
           return topNode
       
     
       def isEmpty(self):
          return self.size == 0
+     
+      def show(self):
+          node = self.root
+          res = []
+          while node is not None:
+              res.append(node.data)
+              node = node.next
+              
+          return res
           
-def addOperand(oprnd):
-    if oprnd is None:
-        return ''
-    
-    return oprnd
-
+       
 def solution(exp):
-    res = ''
     operations = {'+','/','-','*'}
     stack = Stack()
     for char in exp:
-        if char not in operations:
-            stack.push(char)
-        else:
+        if char in operations:
+            operand2 = (stack.pop())
+            operand1 = (stack.pop())
+            res = ''
             res += char
-            stack.pop()
-            stack.pop()
-            # op2 = stack.pop()
-            # res += addOperand(stack.pop())
-            # res += addOperand(stack.pop())
-            
-    # print(res)
+            res += operand1
+            res += operand2
+            stack.push(res)
+        else:
+         stack.push(char)
+          
+    return (stack.pop())
             
     
         
 
-solution('AB+CD-*')
-# *+AB-CD
+# solution('AB+CD-*')
+# # *+AB-CD
+
+# solution('ABC/-AK/L-*')
+# # *-A/BC-/AKL

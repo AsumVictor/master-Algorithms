@@ -31,7 +31,7 @@ class TestSolution(unittest.TestCase):
         
     def test_binary_1(self):
         '''Testing for case 2'''
-        self.assertEqual(solution('ABC/-AK/L-*', '*-A/BC-/AKL'))
+        self.assertEqual(solution('ABC/-AK/L-*'), '*-A/BC-/AKL')
     
 if __name__ == '__main__':
     unittest.main(testRunner=unittest.TextTestRunner(resultclass=CustomTestResult))
