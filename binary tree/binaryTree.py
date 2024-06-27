@@ -57,6 +57,8 @@ root.insertNode(6)
 
 root.insertNode(6)
 root.insertNode(17)
+root.insertNode(22)root.insertNode(6)
+root.insertNode(17)
 root.insertNode(22)
 
 
