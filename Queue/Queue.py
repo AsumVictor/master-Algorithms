@@ -35,9 +35,6 @@ class Queue:
         self.size -= 1
         
         
-        
-      
-        
     def to_string(self):
         currNode = self.front
         while currNode is not None:
@@ -52,10 +49,11 @@ queue.enqueue(2)
 queue.enqueue(3)
 queue.enqueue(4)
 queue.enqueue(5)
+print(queue.size)
 queue.dequeue()
 queue.dequeue()
-
 queue.to_string()
+print(queue.size)
             
         
             

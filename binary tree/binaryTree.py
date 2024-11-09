@@ -1,67 +1,135 @@
-class Tree:
-    def __init__(self):
-        self.data = None
+from collections import deque
+
+
+class TreeNode:
+    def __init__(self, data):
+        self.data = data
         self.left = None
         self.right = None
-        
-    def insertNode(self, data):
-          if self.data is None:
-              self.data = data
-              return None
-          
-          newNode = Tree()
-          newNode.insertNode(data)
 
-          if data <= self.data:
-              
-              if self.left is None:
-                  self.left = newNode
-              else:
-                  self.left.insertNode(data)
-                  
-          else:
-              if self.right is None:
-                  self.right = newNode
-              else:
-                  self.right.insertNode(data)
-      
-    def getNodes(self):
-        data = {}  
-        
+    def in_order(self):
         if self.data is None:
-            return None 
+            return
+
+        if self.left is not None:
+            self.left.in_order()
+        print(self.data)
+        if self.right is not None:
+            self.right.in_order()
+
+    def in_order_stack(self):
+
+        stack = []
+        temp = self
+
+        while len(stack) >= 1 or (temp is not None):
+            if temp is not None:
+                stack.append(temp)
+                temp = temp.left
+            else:
+                temp = stack.pop()
+                print(f"Data: {temp.data}")
+                temp = temp.right
+
+    def post_order(self):
+
+        if self.left is not None:
+            self.left.post_order()
+
+        if self.right is not None:
+            self.right.post_order()
+
+        print(f'Data: {self.data}')
+
+        return
+
+    def post_order_stack(self):
+
+        current = self
+        stack = []
+
+        while (current is not None) or (len(stack) >= 1):
+
+            if current is not None:
+                stack.append(current)
+                current = current.left
+            else:
+                temp = stack[-1].right
+
+                if temp is None:
+                    temp = stack.pop()
+                    print(f'Data: {temp.data}')
+
+                    while (len(stack) >= 1) and temp == stack[-1].right:
+                        temp = stack.pop()
+                        print(f'Data: {temp.data}')
+
+                else:
+                    current = temp
+
+    def level_order(self):
+
+        queue = []
+        queue.append(self)
+
+        while len(queue) > 0:
+            temp = queue.pop(0)
+            print(f"Data: {temp.data}")
+
+            if temp.left is not None:
+                queue.append(temp.left)
+
+            if temp.right is not None:
+                queue.append(temp.right)
+    
+    def find_max(self):
         
-        data['root'] = self.data
-        if self.left is None:
-            data['left'] = None
-        else:
-            data['left'] = self.left.getNodes()
+        result = self.data;
         
-        if self.right is None:
-            data['right'] = None
+        left = None;
+        if self.left is not None:
+            left = self.left.find_max()
         else:
-            data['right'] = self.right.getNodes()
+            left = float("-inf")
             
-        return data
-    
-    
-    
-    
+        right = None;
+        if self.right is not None:
+            right = self.right.find_max()
+        else:
+            right = float("-inf")
+            
+        if left > result:
+            result = left
+            
+        if right > result:
+            result = right
+            
+        return result
+            
+        
+        
 
-root = Tree()
-root.insertNode(20)
-root.insertNode(12)
-root.insertNode(33)
-root.insertNode(44)
-root.insertNode(6)
 
-root.insertNode(6)
-root.insertNode(17)
-root.insertNode(22)
-root.insertNode(6)
-root.insertNode(17)
-root.insertNode(22)
 
-nodes = root.getNodes()
-print(nodes)
+root = TreeNode(1)
+L1 = TreeNode(2)
+R1 = TreeNode(3)
+LL1 = TreeNode(4)
+LR1 = TreeNode(15)
+RL1 = TreeNode(6)
+RLL1 = TreeNode(7)
 
+root.left = L1
+root.right = R1
+L1.left = LL1
+L1.right = LR1
+
+R1.left = RL1
+RL1.left = RLL1
+
+# root.in_order()
+# print("-----------------------")
+# root.in_order_stack()
+# print("-----------------------")
+# root.level_order()
+print(root.find_max())
